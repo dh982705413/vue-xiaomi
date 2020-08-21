@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div>order-list</div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'order-list'
+}
 </script>
 
 <style lang="scss" scoped></style>

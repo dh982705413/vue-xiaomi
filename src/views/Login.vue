@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div>login</div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'login'
+}
 </script>
 
 <style lang="scss" scoped></style>

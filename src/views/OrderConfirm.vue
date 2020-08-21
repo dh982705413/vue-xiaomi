@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div>order-confirm</div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'order-confirm'
+}
 </script>
 
 <style lang="scss" scoped></style>

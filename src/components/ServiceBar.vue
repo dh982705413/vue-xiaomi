@@ -29,6 +29,7 @@ export default {
 @import '../assets/scss/base';
 .service-bar {
   height: 40px;
+  line-height: 40px;
   .container {
     display: flex;
     justify-content: space-evenly;

@@ -1,17 +1,14 @@
 <template>
-  <div>index</div>
+  <div class="index">
+    <service-bar></service-bar>
+  </div>
 </template>
 <script>
+import ServiceBar from '@/components/ServiceBar'
 export default {
   name: 'index',
-  created() {
-    this.fetch()
-  },
-  methods: {
-    async fetch() {
-      const data = await this.$http.get('/products')
-      console.log(data)
-    }
+  components: {
+    ServiceBar
   }
 }
 </script>

@@ -6,6 +6,9 @@ import './plugins/element.js'
 import http from '@/util/http'
 import './assets/scss/index.scss'
 
+if (process.env.VUE_APP_MOCK_API === 'true') {
+  require('./mock/api')
+}
 Vue.prototype.$http = http
 Vue.config.productionTip = false
 

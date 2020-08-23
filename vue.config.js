@@ -12,5 +12,13 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: '@import "./src/assets/scss/config.scss";'
+      }
+    }
+  },
+  outputDir: 'C:\\soft\\tomcat\\webapps\\ROOT'
 }

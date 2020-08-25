@@ -18,7 +18,7 @@
           <a href="javascript:;">Select Location</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;">登录</a>
+          <a href="javascript:;" @click="$router.push('/login')">登录</a>
           <a href="javascript:;">注册</a>
           <a href="javascript:;">消息通知</a>
           <div href="javascript:;" class="my-cart">

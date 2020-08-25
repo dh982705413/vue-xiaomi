@@ -12,3 +12,17 @@
   background: url($img) no-repeat center;
   background-size: $size;
 }
+
+@mixin hoverAnimate($time: 0.5s) {
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: $time;
+}
+
+@mixin position($pos: absolute, $w: 100%, $h: 100%) {
+  position: $pos;
+  width: $w;
+  height: $h;
+  left: 0;
+  top: 0;
+}

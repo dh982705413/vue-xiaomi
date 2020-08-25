@@ -1,0 +1,18 @@
+.slide-enter-active,
+.slide-leave-active {
+  top: 0 !important;
+  transition: all 0.5s;
+}
+.slide-leave-to,
+.slide-enter {
+  top: -100% !important;
+}
+
+.fade-enter-active,
+.fade-leave-avtive {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0.5;
+}

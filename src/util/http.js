@@ -14,10 +14,13 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   res => {
+    const path = router.app.$route.path
     if (res.data.status === 0) {
       return res.data
     } else if (res.status === 10) {
-      router.push('/login')
+      if (path !== '/index' && path !== '/') {
+        router.push('/login')
+      }
     } else {
       Vue.prototype.$message.error(res.data.msg)
     }

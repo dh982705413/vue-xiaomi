@@ -85,7 +85,7 @@ export default {
   .mask {
     @include position(fixed);
     background-color: $colorI;
-    opacity: 0.5;
+    opacity: 0.3;
   }
   .modal-dialog {
     @include position();

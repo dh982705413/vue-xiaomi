@@ -1,6 +1,7 @@
 @import './reset';
 @import './iconfont';
 @import './trabsition';
+@import './mixin';
 .w {
   width: 1226px;
   margin: 0 auto;
@@ -50,4 +51,30 @@
   content: ' ';
   display: table;
   clear: both;
+}
+
+.header-logo {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  background-color: #ff6600;
+  overflow: hidden;
+  a {
+    display: inline-block;
+    width: 110px;
+    height: 55px;
+    &:before {
+      content: ' ';
+      @include bgImg(55px, 55px, '/imgs/logo-mi.png');
+      transition: 0.15s;
+    }
+    &:after {
+      content: ' ';
+      @include bgImg(55px, 55px, '/imgs/mi-home.png');
+    }
+    &:hover:before {
+      margin-left: -55px;
+      transition: 0.15s;
+    }
+  }
 }

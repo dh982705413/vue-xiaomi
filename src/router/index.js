@@ -72,6 +72,11 @@ const routes = [
     name: 'login',
     path: '/login',
     component: () => import('@/views/Login')
+  },
+  {
+    name: 'register',
+    path: '/register',
+    component: () => import('@/views/Register')
   }
 ]
 
@@ -79,7 +84,9 @@ const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login' || to.path === '/index') return next()
+  if (to.path === '/login' || to.path === '/index' || to.path === '/register') {
+    return next()
+  }
   const userId = window.sessionStorage.getItem('userId')
   if (!userId) {
     return next('/login')

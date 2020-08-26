@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <nav-header></nav-header>
-    <router-view />
+    <transition name="el-fade-in-linear">
+      <router-view :key="$route.path" />
+    </transition>
     <nav-footer></nav-footer>
   </div>
 </template>

@@ -98,6 +98,8 @@ import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import Modal from '@/components/Modal'
 import 'swiper/css/swiper.css'
 import ServiceBar from '@/components/ServiceBar'
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'index',
   components: {
@@ -155,8 +157,21 @@ export default {
   },
   created() {
     this.fetchProductList()
+    if (this.$route.query.from === 'login' || this.$route.path === '/index') {
+      this.getUser()
+      this.getCartCount()
+    }
   },
   methods: {
+    ...mapMutations(['saveUserName', 'saveCartCount']),
+    async getUser() {
+      const res = await this.$http.get('/user')
+      this.saveUserName(res?.data?.username)
+    },
+    async getCartCount() {
+      const res = await this.$http.get('/carts/products/sum')
+      this.saveCartCount(res?.data || 0)
+    },
     async fetchProductList() {
       const { data: res } = await this.$http.get('/products', {
         params: {

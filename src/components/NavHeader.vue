@@ -25,9 +25,13 @@
             >登录</a
           >
           <a href="javascript:;" v-else>{{ username }}</a>
-          <a href="javascript:;">注册</a>
-          <a href="javascript:;">消息通知</a>
-          <div href="javascript:;" class="my-cart">
+          <a href="javascript:;" v-if="username" @click="logout">退出</a>
+          <a href="javascript:;" @click="$router.push('/register')">注册</a>
+          <div
+            href="javascript:;"
+            class="my-cart"
+            @click="$router.push('/cart')"
+          >
             <i class="iconfont icon-cart"></i>
             购物车({{ cartCount }})
           </div>
@@ -79,7 +83,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'nav-header',
   created() {
@@ -100,6 +104,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['saveUserName', 'saveCartCount']),
     async getProductList() {
       const { data } = await this.$http.get('/products', {
         params: { pageSize: 6 }
@@ -108,6 +113,14 @@ export default {
     },
     goDetail(id) {
       this.$router.push(`/product/${id}`)
+    },
+    async logout() {
+      await this.$http.post('/user/logout')
+      this.$cookie.set('userId', '', { expires: '-1' })
+      this.saveUserName(undefined)
+      this.saveCartCount(0)
+      window.sessionStorage.setItem('userId', '')
+      this.$message.success('退出成功')
     }
   },
   computed: {
@@ -176,31 +189,6 @@ export default {
     .container {
       height: 112px;
       @include flex();
-      .header-logo {
-        display: inline-block;
-        width: 55px;
-        height: 55px;
-        background-color: #ff6600;
-        overflow: hidden;
-        a {
-          display: inline-block;
-          width: 110px;
-          height: 55px;
-          &:before {
-            content: ' ';
-            @include bgImg(55px, 55px, '/imgs/logo-mi.png');
-            transition: 0.15s;
-          }
-          &:after {
-            content: ' ';
-            @include bgImg(55px, 55px, '/imgs/mi-home.png');
-          }
-          &:hover:before {
-            margin-left: -55px;
-            transition: 0.15s;
-          }
-        }
-      }
       .header-menu {
         width: 643px;
         .hide {

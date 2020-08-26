@@ -18,11 +18,16 @@ http.interceptors.response.use(
     if (res.data.status === 0) {
       return res.data
     } else if (res.data.status === 10) {
-      if (path !== '/index' && path !== '/') {
+      if (path !== '/index' && path !== '/' && path !== '/register') {
         window.location.href = '#/login'
       }
     } else {
-      if (path !== '/index' && path !== '/' && path !== '/login') {
+      if (
+        path !== '/index' &&
+        path !== '/' &&
+        path !== '/login' &&
+        path !== '/register'
+      ) {
         Vue.prototype.$message.error(res.data.msg)
       }
     }

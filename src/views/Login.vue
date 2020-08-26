@@ -39,10 +39,14 @@
             />
             <button class="btn btn-huge" @click="login">登录</button>
             <div class="another">
-              <span @click="register">手机或短信登录/注册</span>
+              <span @click="$router.push('/register')"
+                >手机或短信登录/注册</span
+              >
               <span>
-                <a href="javascript:;">立即注册</a> |
-                <a href="javascript:;">忘记密码?</a></span
+                <a href="javascript:;" @click="$router.push('/register')"
+                  >立即注册</a
+                >
+                | <a href="javascript:;">忘记密码?</a></span
               >
             </div>
           </div>
@@ -74,26 +78,20 @@ export default {
   methods: {
     async login() {
       const { username, password } = this
-      const res = await this.$http.post('/user/login', {
-        username,
-        password
-      })
-      this.userId = res.data.id
-      window.sessionStorage.setItem('userId', this.userId)
-      this.$message.success(res.msg)
-      this.$cookie.set('userId', res.data.id, { expires: '1M' })
-      this.$store.dispatch('saveUserName', res.data.username)
-      this.$router.push('/index')
-      location.reload()
-    },
-    async register() {
-      const { username, password } = this
-      const res = await this.$http.post('/user/register', {
-        username,
-        password,
-        email: '2415826929@qq.com'
-      })
-      this.$message.success(res.msg)
+      try {
+        const res = await this.$http.post('/user/login', {
+          username,
+          password
+        })
+        this.userId = res?.data?.id || ''
+        window.sessionStorage.setItem('userId', this.userId)
+        this.$message.success(res.msg)
+        this.$cookie.set('userId', res.data.id, { expires: '1M' })
+        this.$store.dispatch('saveUserName', res.data.username)
+        this.$router.push('/index?from=login')
+      } catch {
+        this.$message.error('登录出错')
+      }
     }
   }
 }

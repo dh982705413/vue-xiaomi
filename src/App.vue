@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'app',
   mounted() {
@@ -14,13 +15,14 @@ export default {
     this.getCartCount()
   },
   methods: {
+    ...mapMutations(['saveUserName', 'saveCartCount']),
     async getUser() {
       const res = await this.$http.get('/user')
-      console.log(res)
+      this.saveUserName(res?.data?.username)
     },
     async getCartCount() {
       const res = await this.$http.get('/carts/products/sum')
-      console.log(res)
+      this.saveCartCount(res?.data || 0)
     }
   }
 }

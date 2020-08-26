@@ -17,12 +17,14 @@ http.interceptors.response.use(
     const path = router.app.$route.path
     if (res.data.status === 0) {
       return res.data
-    } else if (res.status === 10) {
+    } else if (res.data.status === 10) {
       if (path !== '/index' && path !== '/') {
-        router.push('/login')
+        window.location.href = '#/login'
       }
     } else {
-      Vue.prototype.$message.error(res.data.msg)
+      if (path !== '/index' && path !== '/' && path !== '/login') {
+        Vue.prototype.$message.error(res.data.msg)
+      }
     }
   },
   error => {

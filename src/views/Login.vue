@@ -78,10 +78,13 @@ export default {
         username,
         password
       })
-      this.$message.success(res.msg)
       this.userId = res.data.id
+      window.sessionStorage.setItem('userId', this.userId)
+      this.$message.success(res.msg)
       this.$cookie.set('userId', res.data.id, { expires: '1M' })
+      this.$store.dispatch('saveUserName', res.data.username)
       this.$router.push('/index')
+      location.reload()
     },
     async register() {
       const { username, password } = this

@@ -68,7 +68,7 @@
                   <p class="product-detail">{{ item.subtitle }}</p>
                   <div class="product-price">
                     {{ item.price }}元
-                    <a href="javascript:;" @click="showDialog = true"> </a>
+                    <a href="javascript:;" @click="addCart(item.id)"> </a>
                   </div>
                 </div>
               </a>
@@ -84,6 +84,7 @@
       modalType="middle"
       :showModal="showDialog"
       @closedialog="showDialog = false"
+      @submit="$router.push('/cart')"
     >
       <template #body>
         商品添加成功
@@ -96,7 +97,6 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import Modal from '@/components/Modal'
 import 'swiper/css/swiper.css'
-
 import ServiceBar from '@/components/ServiceBar'
 export default {
   name: 'index',
@@ -165,6 +165,15 @@ export default {
         }
       })
       this.productList = [res.list.splice(0, 4), res.list]
+    },
+    async addCart(id) {
+      const res = await this.$http.post('/carts', {
+        productId: id,
+        selected: true
+      })
+      console.log(res)
+      this.$store.dispatch('saveCartCount', res.data.cartTotalQuantity)
+      this.showDialog = true
     }
   }
 }

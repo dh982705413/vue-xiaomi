@@ -18,12 +18,18 @@
           <a href="javascript:;">Select Location</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;" @click="$router.push('/login')">登录</a>
+          <a
+            href="javascript:;"
+            @click="$router.push('/login')"
+            v-if="username === undefined"
+            >登录</a
+          >
+          <a href="javascript:;" v-else>{{ username }}</a>
           <a href="javascript:;">注册</a>
           <a href="javascript:;">消息通知</a>
           <div href="javascript:;" class="my-cart">
             <i class="iconfont icon-cart"></i>
-            购物车(0)
+            购物车({{ cartCount }})
           </div>
         </div>
       </div>
@@ -73,6 +79,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'nav-header',
   created() {
@@ -113,7 +120,8 @@ export default {
         }
         return pro
       })
-    }
+    },
+    ...mapState(['username', 'cartCount'])
   }
 }
 </script>

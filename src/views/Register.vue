@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="wrapper">
-      <div class="logo"></div>
+      <div class="logo" @click="$router.push('/index')"></div>
       <h2 class="title">注册小米账号</h2>
       <div class="register-box">
         <div class="register-item">

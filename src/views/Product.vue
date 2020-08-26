@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <product-param>
+    <product-param :title="product.name" :subtitle="product.subtitle">
       <template #buy>
         <button class="btn" @click="buy">立即购买</button>
       </template>
@@ -210,7 +210,7 @@ export default {
           @include position(fixed);
           background-color: #333333;
           opacity: 0.4;
-          z-index: 10;
+          z-index: 99;
         }
         @keyframes slideDown {
           from {
@@ -218,13 +218,13 @@ export default {
             opacity: 0;
           }
           to {
-            top: 50%;
+            top: 55%;
             opacity: 1;
           }
         }
         @keyframes slideUp {
           from {
-            top: 50%;
+            top: 55%;
             opacity: 1;
           }
           to {
@@ -237,13 +237,13 @@ export default {
           top: -50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          z-index: 10;
+          z-index: 99;
           width: 1000px;
           height: 536px;
           opacity: 1;
           &.slideDown {
             animation: slideDown 0.6s linear;
-            top: 50%;
+            top: 55%;
           }
           &.slideUp {
             animation: slideUp 0.6s linear;
@@ -254,7 +254,7 @@ export default {
             right: 20px;
             @include bgImg(20px, 20px, '/imgs/icon-close.png');
             cursor: pointer;
-            z-index: 11;
+            z-index: 99;
           }
           video {
             width: 100%;

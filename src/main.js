@@ -8,7 +8,7 @@ import './assets/scss/index.scss'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
 Vue.use(VueLazyLoad, {
-  loading: '/imgs/loading-svg/loading-balls.svg'
+  loading: '/imgs/loading-svg/loading-bubbles.svg'
 })
 Vue.use(VueCookie)
 if (process.env.VUE_APP_MOCK_API === 'true') {

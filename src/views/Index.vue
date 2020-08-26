@@ -42,7 +42,12 @@
         </swiper>
       </div>
       <div class="ads-list">
-        <a href="" v-for="item in adsList" :key="item.id">
+        <a
+          href="javascript:;"
+          v-for="item in adsList"
+          :key="item.id"
+          @click="$router.push(`/product/${item.id}`)"
+        >
           <img v-lazy="item.img" alt="" />
         </a>
       </div>
@@ -61,14 +66,19 @@
           </div>
           <div class="list-box">
             <div class="list" v-for="(arr, index) in productList" :key="index">
-              <a class="item" v-for="(item, index) in arr" :key="index">
+              <a
+                class="item"
+                v-for="(item, index) in arr"
+                :key="index"
+                @click="$router.push(`/product/${item.id}`)"
+              >
                 <img v-lazy="item.mainImage" alt="" />
                 <div class="item-info">
                   <h3>{{ item.name }}</h3>
                   <p class="product-detail">{{ item.subtitle }}</p>
                   <div class="product-price">
                     {{ item.price }}元
-                    <a href="javascript:;" @click="addCart(item.id)"> </a>
+                    <a href="javascript:;" @click.stop="addCart(item.id)"> </a>
                   </div>
                 </div>
               </a>
@@ -129,11 +139,11 @@ export default {
         effect: 'fade'
       },
       slideList: [
-        { id: '42', img: '/imgs/slider/slide-1.jpg' },
-        { id: '45', img: '/imgs/slider/slide-2.jpg' },
-        { id: '46', img: '/imgs/slider/slide-3.jpg' },
-        { id: '43', img: '/imgs/slider/slide-4.jpg' },
-        { id: '44', img: '/imgs/slider/slide-5.jpg' }
+        { id: 42, img: '/imgs/slider/slide-1.jpg' },
+        { id: 45, img: '/imgs/slider/slide-2.jpg' },
+        { id: 46, img: '/imgs/slider/slide-3.jpg' },
+        { id: 43, img: '/imgs/slider/slide-4.jpg' },
+        { id: 44, img: '/imgs/slider/slide-5.jpg' }
       ],
       navMenuList: [
         { title: '手机 电话卡', col: 2, products: [1, 2, 3, 4, 5, 6] },
@@ -186,7 +196,6 @@ export default {
         productId: id,
         selected: true
       })
-      console.log(res)
       this.$store.dispatch('saveCartCount', res.data.cartTotalQuantity)
       this.showDialog = true
     }

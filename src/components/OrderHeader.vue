@@ -8,9 +8,7 @@
         <div class="order-info">
           <h2>{{ title }}</h2>
           <span>
-            <slot name="title"
-              >温馨提示: 产品是否购买成功，以最终下单为准哦，请尽快结算</slot
-            >
+            {{ tip }}
           </span>
         </div>
       </div>
@@ -32,14 +30,15 @@ export default {
     title: {
       type: String,
       default: '我的购物车'
-    }
+    },
+    tip: String
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .order-header {
-  border-bottom: 1px solid $colorE;
+  border-bottom: 2px solid $colorA;
   .container {
     height: 80px;
     display: flex;

@@ -2,11 +2,9 @@
   <div class="product-nav" :class="{ isFixed: isFixed }">
     <div class="wrapper w">
       <ul class="pro-title">
-        <li>小米8 透明探索版</li>
-        <li>|</li>
-        <li>小米8</li>
-        <li>|</li>
-        <li>小米8 SE</li>
+        <li>{{ title }}</li>
+        <li v-show="subtitle">|</li>
+        <li>{{ subtitle }}</li>
       </ul>
       <ul class="pro-params">
         <li>概述</li>
@@ -27,6 +25,10 @@
 <script>
 export default {
   name: 'product-nav',
+  props: {
+    title: String,
+    subtitle: String
+  },
   data() {
     return {
       isFixed: false
@@ -55,7 +57,7 @@ export default {
   line-height: 70px;
   background-color: $colorG;
   border: 1px solid #e5e5e5;
-  z-index: 998;
+  z-index: 500;
   &.isFixed {
     position: fixed;
     top: 0;
